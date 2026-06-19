@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do Life Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Top bar: theme toggle -->
+  <header class="topbar">
+    <span class="topbar__brand">To Do List Dashboard</span>
+    <button id="theme-toggle" type="button" class="btn-icon" aria-label="Toggle light/dark mode" title="Toggle theme">🌙</button>
+  </header>
+
+  <main class="dashboard">
+
+    <!-- ===================== Clock / Greeting ===================== -->
+    <section class="panel panel--clock" aria-label="Clock and Greeting">
+      <!-- Greeting: click to set custom name -->
+      <p id="greeting" aria-live="polite" title="Click to set your name"></p>
+      <p id="clock-time" aria-live="polite"></p>
+      <p id="clock-date" aria-live="polite"></p>
+    </section>
+
+    <!-- ===================== Focus Timer ========================= -->
+    <section class="panel panel--timer" aria-label="Focus Timer">
+      <h2 class="panel__title">Focus Timer</h2>
+      <p id="timer-display" aria-live="polite" aria-label="Time remaining">25:00</p>
+      <p id="timer-done-indicator" class="timer-done-indicator" hidden aria-live="assertive">
+        Session complete!
+      </p>
+      <div class="timer-duration-row">
+        <label for="timer-minutes" class="timer-duration-label">Minutes:</label>
+        <input id="timer-minutes" type="number" min="1" max="120" value="25" class="timer-minutes-input" aria-label="Pomodoro duration in minutes" />
+        <button id="timer-set" type="button" class="btn-secondary">Set</button>
+      </div>
+      <div class="timer-controls">
+        <button id="timer-start" type="button">Start</button>
+        <button id="timer-stop" type="button" disabled>Stop</button>
+        <button id="timer-reset" type="button">Reset</button>
+      </div>
+    </section>
+
+    <!-- ===================== Task List ========================== -->
+    <section class="panel panel--tasks" aria-label="Task List">
+      <div class="panel-header">
+        <h2 class="panel__title">Tasks</h2>
+        <select id="task-sort" class="sort-select" aria-label="Sort tasks">
+          <option value="insertion">Insertion order</option>
+          <option value="active">Active first</option>
+          <option value="completed">Completed first</option>
+          <option value="alpha">A → Z</option>
+        </select>
+      </div>
+      <div class="task-input-row">
+        <label for="task-input" class="sr-only">New task title</label>
+        <input
+          id="task-input"
+          type="text"
+          maxlength="255"
+          placeholder="Add a new task…"
+          aria-label="New task title"
+        />
+        <button id="task-add" type="button">Add</button>
+      </div>
+      <ul id="task-list" aria-label="Task items" aria-live="polite"></ul>
+    </section>
+
+    <!-- ===================== Quick Links ======================== -->
+    <section class="panel panel--links" aria-label="Quick Links">
+      <h2 class="panel__title">Quick Links</h2>
+      <div class="link-input-group">
+        <label for="link-label" class="sr-only">Link label</label>
+        <input
+          id="link-label"
+          type="text"
+          maxlength="100"
+          placeholder="Label"
+          aria-label="Link label"
+        />
+        <label for="link-url" class="sr-only">Link URL</label>
+        <input
+          id="link-url"
+          type="url"
+          maxlength="2048"
+          placeholder="URL"
+          aria-label="Link URL"
+        />
+        <button id="link-add" type="button">Add</button>
+      </div>
+      <ul id="link-list" aria-label="Quick link items" aria-live="polite"></ul>
+    </section>
+
+  </main><!-- /.dashboard -->
+
+  <p id="error-banner" class="error-banner" hidden aria-live="assertive" role="alert"></p>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
